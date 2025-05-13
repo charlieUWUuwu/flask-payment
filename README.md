@@ -10,8 +10,8 @@
 ## Development
 ### 1. Clone this repo
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone https://github.com/charlieUWUuwu/flask-payment.git
+cd flask-payment
 ```
 ### 2. Install the dependencies
 ```bash
