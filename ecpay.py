@@ -23,6 +23,25 @@ def _generate_mac(params):
 
 @ecpay_blueprint.route("/checkout", methods=["POST"])
 def checkout():
+    """
+    建立綠界付款交易（自動跳轉）
+    ---
+    tags:
+      - ECPay
+    summary: 建立綠界信用卡付款表單
+    description:
+      建立一筆 ECPay 信用卡交易訂單，並返回自動送出表單的 HTML，將使用者導向 ECPay 結帳頁面。
+    produces:
+      - json
+    responses:
+      200:
+        description: 返回自動送出至 ECPay 的 HTML 表單（付款頁）
+        content:
+          text/html:
+            example: |
+              <form ...>...</form>
+              <script>document.getElementById('ecpay-form').submit();</script>
+    """
     now = datetime.datetime.now()
     order_params = {
         "MerchantID": ECPAY_MERCHANT_ID,
