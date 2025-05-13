@@ -96,7 +96,7 @@ def request_payment():
         )
 
 
-@linepay_blueprint.route("/line-pay/confirm", methods=["GET"])
+@linepay_blueprint.route("/confirm", methods=["GET"])
 def confirm_payment():
     """
     確認 LINE Pay 付款結果
