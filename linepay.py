@@ -3,7 +3,7 @@ import hashlib
 import hmac
 import json
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import requests
 from flask import Blueprint, jsonify, request
@@ -28,7 +28,7 @@ def _generate_headers(body_json, channel_secret, url):
     }
 
 
-@linepay_blueprint.route("/line-pay/request", methods=["GET"])
+@linepay_blueprint.route("/request", methods=["GET"])
 def request_payment():
     """
     建立 LINE Pay 付款請求
@@ -51,7 +51,7 @@ def request_payment():
     request_url = f"{LINEPAY_GATEWAY_URL}{url}"
     products_quantity = 1  # 購買的商品數量
     products_price = 30  # 購買單價
-    order_id = datetime.utcnow() + timedelta(hours=8)
+    order_id = datetime.now(timezone.utc) + timedelta(hours=8)
     order_id = order_id.strftime("%Y%m%d%H%M%S")  # 訂單編號
 
     body = {
